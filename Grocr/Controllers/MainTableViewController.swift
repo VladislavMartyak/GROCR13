@@ -10,13 +10,14 @@ class MainTableViewController: UITableViewController {
     var items: [Appointment] = []
     var user: User!
     var userCountBarButtonItem: UIBarButtonItem!
-    let ref = Database.database().reference(withPath: "grocery-items")
-    let usersRef = Database.database().reference(withPath: "online")
+    var userType: String = ""
+    
+    let ref = Database.database().reference(withPath: "Appointments")
+    let usersRef = Database.database().reference(withPath: "Online")
     let clientsRef = Database.database().reference(withPath: "Clients")
     
     // MARK: Outlets
     @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelSurname: UILabel!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -35,12 +36,24 @@ class MainTableViewController: UITableViewController {
         userCountBarButtonItem.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = userCountBarButtonItem
         
+        clientsRef.child(Auth.auth().currentUser?.uid ?? "h").child("role").observe(.value, with: { (snapshot) in
+            if let value = snapshot.value as? String{
+                self.userType = value
+            }
+        })
+        
         ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             var newItems: [Appointment] = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
-                    let groceryItem = Appointment(snapshot: snapshot) {
-                    newItems.append(groceryItem)
+                    let appointmentItem = Appointment(snapshot: snapshot) {
+                    if self.userType == "Client"{
+                        if appointmentItem.addedByUser == Auth.auth().currentUser?.email{
+                            newItems.append(appointmentItem)
+                        }
+                    } else if self.userType == "Worker" {
+                        newItems.append(appointmentItem)
+                    }
                 }
             }
             
@@ -57,9 +70,6 @@ class MainTableViewController: UITableViewController {
             currentUserRef.onDisconnectRemoveValue()
         }
         
-        
-      
-        
         usersRef.observe(.value, with: { snapshot in
             if snapshot.exists() {
                 self.userCountBarButtonItem?.title = snapshot.childrenCount.description
@@ -67,15 +77,13 @@ class MainTableViewController: UITableViewController {
                 self.userCountBarButtonItem?.title = "0"
             }
         })
-        
-        print("HEREHERERERERERE")
+
         clientsRef.child(Auth.auth().currentUser?.uid ?? "h").child("name").observe(.value, with: { (snapshot) in
-            print(snapshot.value as? String)
             if let value = snapshot.value as? String{
-                print("we are here")
-                print(value)
+                self.labelName.text = "Hi, \(value)"
+            } else{
+                self.labelName.text = "Hi, Client"
             }
-            print("No we are not here")
         })
     }
     
@@ -129,11 +137,11 @@ class MainTableViewController: UITableViewController {
     
     // MARK: Add Item
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "Grocery Item",
-                                      message: "Add an Item",
+        let alert = UIAlertController(title: "New appointment",
+                                      message: "What do you want?",
                                       preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Add", style: .default) { _ in
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
             

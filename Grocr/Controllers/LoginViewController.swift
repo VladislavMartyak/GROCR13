@@ -56,39 +56,6 @@ class LoginViewController: UIViewController {
     
       @IBAction func signUpDidTouch(_ sender: AnyObject) {
         performSegue(withIdentifier: loginToSignUp, sender: nil)
-    //    let alert = UIAlertController(title: "Register",
-    //                                  message: "Register",
-    //                                  preferredStyle: .alert)
-    //
-    //    let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-    //
-    //      let emailField = alert.textFields![0]
-    //      let passwordField = alert.textFields![1]
-    //
-    //      Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { user, error in
-    //        if error == nil {
-    //          Auth.auth().signIn(withEmail: self.textFieldLoginEmail.text!,
-    //                             password: self.textFieldLoginPassword.text!)
-    //        }
-    //      }
-    //    }
-    //
-    //    let cancelAction = UIAlertAction(title: "Cancel",
-    //                                     style: .cancel)
-    //
-    //    alert.addTextField { textEmail in
-    //      textEmail.placeholder = "Enter your email"
-    //    }
-    //
-    //    alert.addTextField { textPassword in
-    //      textPassword.isSecureTextEntry = true
-    //      textPassword.placeholder = "Enter your password"
-    //    }
-    //
-    //    alert.addAction(saveAction)
-    //    alert.addAction(cancelAction)
-    //
-    //    present(alert, animated: true, completion: nil)
       }
 }
 
