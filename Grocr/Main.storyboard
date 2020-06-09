@@ -221,14 +221,14 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jS9-aU-tQZ">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="covid19" translatesAutoresizingMaskIntoConstraints="NO" id="jS9-aU-tQZ">
                                     <rect key="frame" x="20" y="203" width="240" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="L55-Ck-yzd"/>
                                         <constraint firstAttribute="height" constant="160" id="Rbk-dJ-hje"/>
                                     </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-JB-6xP">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-JB-6xP">
                                     <rect key="frame" x="280" y="203" width="240" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="160" id="CDu-zv-j1u"/>
@@ -253,14 +253,14 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiD-gQ-yMS">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barbershop1" translatesAutoresizingMaskIntoConstraints="NO" id="eiD-gQ-yMS">
                                     <rect key="frame" x="20" y="501" width="240" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="lxx-8n-maK"/>
                                         <constraint firstAttribute="height" constant="160" id="yJl-SR-dxI"/>
                                     </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UtS-j0-Ol6">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barbershop2" translatesAutoresizingMaskIntoConstraints="NO" id="UtS-j0-Ol6">
                                     <rect key="frame" x="280" y="501" width="240" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="240" id="rOm-ei-cIX"/>
@@ -358,6 +358,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="labelName" destination="TW6-tm-flj" id="vf2-db-EeJ"/>
+                        <outlet property="labelStatus" destination="JK6-9f-tc9" id="wTb-K3-WB7"/>
                         <segue destination="oUo-Uh-r42" kind="show" identifier="ListToUsers" id="NRC-oz-J58"/>
                     </connections>
                 </tableViewController>
@@ -539,6 +540,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="1200" height="1200"/>
+        <image name="barbershop1" width="480" height="320"/>
+        <image name="barbershop2" width="480" height="320"/>
+        <image name="covid19" width="480" height="320"/>
+        <image name="home" width="480" height="320"/>
         <image name="pair-of-green-and-white-chairs-in-barbershop 2" width="4460" height="2973"/>
     </resources>
 </document>
